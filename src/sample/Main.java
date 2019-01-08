@@ -17,7 +17,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
 
-        generateCsvFile("highScores.csv");
+        generateCsvFile("highScores.csv","24","15","1");
     }
 
 

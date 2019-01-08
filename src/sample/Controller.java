@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 
+import static sample.BackEnd.*;
+
 
 public class Controller
 {
@@ -23,7 +25,6 @@ public class Controller
 
 
     boolean playTime = false;
-    int highScore = 0;
 
     public void startGame()
     {
@@ -37,11 +38,26 @@ public class Controller
             click.setText("Click Me!!!");
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(10), ev -> {
                 playScore.setText("You Scored: " + counter);
-                if (highScore < counter)
+
+                if(counter>Integer.parseInt(high1))
                 {
-                    highScore = counter;
-                    bestScore.setText("Highscore: " + highScore);
+                    generateCsvFile("highScores.csv",String.valueOf(counter),high2,high3);
                 }
+                else
+                {
+                    if(counter>Integer.parseInt(high2))
+                    {
+                        generateCsvFile("highScores.csv",high1,String.valueOf(counter),high3);
+                    }
+                    else
+                    {
+                        if(counter>Integer.parseInt(high3))
+                        {
+                            generateCsvFile("highScores.csv",high1,high2,String.valueOf(counter));
+                        }
+                    }
+                }
+                bestScore.setText("High Scores:\n 1) " + high1 +"  2) " + high2 + "  3) " + high3);
                 click.setText("Don't Click Me!");
                 playTime = false;
             }

@@ -32,7 +32,7 @@
             <Insets />
          </GridPane.margin></Button>
       <Label fx:id="playScore" text="Your Score: " GridPane.rowIndex="7" />
-      <Label fx:id="bestScore" text="High Score:" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <Label fx:id="bestScore" text="High Scores:  &#10;1) 24  2) 15  3) 1" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <Label prefHeight="200.0" prefWidth="200.0" text="Fast Clicker !" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <font>
             <Font name="System Italic" size="18.0" />

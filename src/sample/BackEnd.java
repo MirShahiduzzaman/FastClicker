@@ -5,8 +5,15 @@ import java.util.Scanner;
 
 public class BackEnd
 {
-    public static void generateCsvFile(String sFileName)
+    static String high1;
+    static String high2;
+    static String high3;
+
+    public static void generateCsvFile(String sFileName, String s1, String s2, String s3)
     {
+        high1 = s1;
+        high2 = s2;
+        high3 = s3;
         try
         {
             //creates CSV FILE
@@ -16,13 +23,13 @@ public class BackEnd
             writer.append("Highscores");
             writer.append("\n");
 
-            writer.append("24");
+            writer.append(s1);
             writer.append("\n");
 
-            writer.append("10");
+            writer.append(s2);
             writer.append("\n");
 
-            writer.append("1");
+            writer.append(s3);
             writer.append("\n");
 
             //can still generate any data u want
@@ -36,8 +43,9 @@ public class BackEnd
         }
     }
 
-    public static void updateList(int score, String filePath)
+    /*public static void updateList(int score, String filePath)
     {
+        boolean changed = false;
         File file = new File(filePath);
         try
         {
@@ -47,9 +55,9 @@ public class BackEnd
             {
                 String data = inputStream.next();
 
-                if(score>Integer.parseInt(data))
+                if(score>Integer.parseInt(data) && !changed)
                 {
-                    String tempFile = "temp.txt";
+                    String tempFile = "temp.csv";
                     File oldFile = new File(filePath);
                     File newFile = new File(tempFile);
 
@@ -59,19 +67,29 @@ public class BackEnd
                         BufferedWriter bw = new BufferedWriter(fw);
                         PrintWriter pw = new PrintWriter(bw);
                         Scanner x = new Scanner(new File(filePath));
-                        x.useDelimiter("[,\n]]");
+                        x.useDelimiter("[,\n]");
 
+                        String checkScore = x.next();
+                        System.out.println(checkScore);
+                        pw.println(checkScore);
                         while(x.hasNext())
                         {
-                            String score1 = x.next();
-                            String score2 = x.next();
-                            String score3 = x.next();
+                            checkScore = x.next();
+                            System.out.println(checkScore);
 
-                            pw.println(score1 + "," + score2 + "," + score3);
+                            if(score>Integer.parseInt(checkScore) && !changed)
+                            {
+                                checkScore = score + "";
+                                changed = true;
+                            }
+
+                            System.out.println(checkScore);
+                            pw.println(checkScore);
                         }
                         x.close();
                         pw.flush();
                         pw.close();
+                        file.delete();
                         oldFile.delete();
                         File dump = new File(filePath);
                         newFile.renameTo(dump);
@@ -82,8 +100,6 @@ public class BackEnd
                         System.out.println("Error");
                     }
                 }
-
-                System.out.println("");
             }
             inputStream.close();
         }
@@ -91,5 +107,5 @@ public class BackEnd
         {
             e.printStackTrace();
         }
-    }
+    }*/
 }
